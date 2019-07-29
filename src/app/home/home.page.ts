@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
 import {
   GoogleMaps,
   GoogleMap,
@@ -100,7 +100,11 @@ export class HomePage {
   }
   async navigate() {
     const myLocation: MyLocation = await this.map.getMyLocation()
-    this.launchNavigator.navigate([myLocation.latLng.lat, myLocation.latLng.lng])
+    let options: LaunchNavigatorOptions = {
+      start: 'MBA Mobi, St. de Habitações Individuais Sul QI 13 - Lago Sul, Brasília - DF, 71635-130'
+    };
+    
+    this.launchNavigator.navigate([myLocation.latLng.lat, myLocation.latLng.lng], options)
       .then(
         success => console.log('Launched navigator'),
         error => alert(error)
